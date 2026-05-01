@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jav.js" defer></script>
+  </head>
+  <body>
+    <div class="slider" id="slide1">
+      <img src="png1.jpg" alt="img1" class="slides" />
+      <img src="png2.jpg" alt="img2" class="slides" />
+      <img src="png3.jpg" alt="img3" class="slides" />
+    </div>
+    <button class="prev" onclick="prevSlide()"><</button>
+    <button class="next" onclick="nextSlide()">></button>
+    <style>
+
+        @property --angle{
+            syntax: "<angle>";
+                initial-value: 0deg;
+                inherits: false;
+        }
+      body {
+        min-height: 100vh;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .slider {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+      }
+
+
+
+      .slider::after,.slider::before{
+        content: "";
+          --angle:0deg;
+          background-image: conic-gradient(from var(--angle),transparent,blue);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          height: 100%;
+          width: 100%;
+          border-radius:  50px;
+          z-index: -1;
+          padding: 50px;
+          translate: -50% -50%;
+          animation: spin 1s infinite ease-in-out;
+      }
+
+
+     @keyframes spin {
+        from{
+            --angle:0deg;
+        }
+        to{
+            --angle:360deg
+        }
+     }
+
+
+      .slider img {
+        height: 500px;
+        width: 50%;
+        display: none;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      img.displayslide {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        border-radius: 50px;
+        animation: fade 0.5s;
+      
+      }
+      button {
+        font-size: 50px;
+      }
+
+      .prev {
+        position: absolute;
+        top: 45%;
+        left: 29%;
+        opacity: 0.7;
+        border-radius: 22px;
+        border: none;
+        padding: 20px;
+      }
+
+      .next {
+        position: absolute;
+        top: 45%;
+        left: 67%;
+        opacity: 0.7;
+        border-radius: 22px;
+        border: none;
+        padding: 20px;
+      }
+      button:hover {
+        background-color: aliceblue;
+      }
+      button:active {
+        background-color: rgb(35, 139, 230);
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </body>
+</html>
